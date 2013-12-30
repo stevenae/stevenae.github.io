@@ -1,0 +1,51 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46774844-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<title>Steven Alonzo Ellis</title>
+<link rel="stylesheet" type="text/css" href="self.css">
+</head>
+
+<body>
+<a href="index.html"><img id="logo" src="ideographic_description_character_overlaid.svg" type="image/svg+xml">
+</img></a>
+<div id="wrapdiv">
+
+<div id="links"><h2>
+	<a id="sel" href="research.html">Research</a>
+	<a href="visualization.html">Visualization</a>
+	<a href="photography.html">Photography</a>
+	<a href="profile.html">Profile</a>
+	</h2></div>
+<br>
+<h1>CensusMatchR - How it Happened</h1>
+<div id="story"><p>When you're working on a highly-rumored product, how do you prepare for launch without leaking your plans? You have two options:</p>
+<ol>
+<li>Design and launch without understanding your market fit</li>
+<li>Find people who match your target consumer</li>
+</ol>
+<p>Early in my career, I found myself heading up research on a regional service launch. As a physical launch (with a pre-purchase component), there were questions of price and delivery time which, as a behavioral economist by training, sets off alarm bells of Hyperbolic Discounting.</p>
+<p> <a href="http://en.wikipedia.org/wiki/Hyperbolic_discounting">Hyperbolic Discounting</a> is an irrational behavior that we engage in when we're making an investment with a payoff at some point down the road. If I were to ask you if you would pay $10 to reserve a spot at your favorite band's concert this Saturday, you would absolutely say yes, but if that concert is in three months, you'd think twice. This occurs even though you'll probably have more money in three months than you do now.</p>
+<p>[Hyperbolic discounting graph]</p>
+<p>If you want to pick the right price and messaging, you need to get accurate data from your target market. If you want to get accurate data, you need to provide as much context as possible to your research participants. This comes into conflict with wanting to avoid rumors, where providing any potentially identifying information is risky.</p>
+<p>Wanting to have precise research instruments and needing to avoid showing your hand is a classic conflict in research. On top of that, our product and business folks wanted answers within a couple of weeks. I believe in expediency in business, but I felt that there had to be a way around this problem that wasn't digging a tunnel through the validity of our survey.</p>
+<p>I gave myself a day to find a better way forward and dug into Google scholar. I read up on exact-match statistics, particularly this paper by Rosenbaum, showing a novel method of matching individuals on multiple measurements.</p>
+<p>Having worked in census research before, I put two and two together and determined to apply this method to census data to find a way to run our survey, in its purest form, on individuals who were identical to our target consumer in all of the ways that mattered.</p>
+<p>I wrote the alorithm up in R and, two weeks later, we had our perfectly detailed survey results ready to go.</p>
+<p>In my next post, I'll detail that algorithm, including instructions on how to run it and all of the code and source files necessary.</p></div>
+</div>
+</body>
+</html>
