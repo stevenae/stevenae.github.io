@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.0//EN' 'http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd'>
+<svg fill-opacity="1" xmlns:xlink="http://www.w3.org/1999/xlink" color-rendering="auto" color-interpolation="auto" stroke="black" text-rendering="auto" stroke-linecap="square" stroke-miterlimit="10" stroke-opacity="1" shape-rendering="auto" fill="black" stroke-dasharray="none" font-weight="normal" stroke-width="1" xmlns="http://www.w3.org/2000/svg" font-family="&apos;Dialog&apos;" font-style="normal" stroke-linejoin="miter" font-size="12" stroke-dashoffset="0" image-rendering="auto" preserveAspectRatio="xMinYMin slice" viewBox="10 142 400 254">
+  <!--Unicode Character 'IDEOGRAPHIC DESCRIPTION CHARACTER OVERLAID' (U+2FFB)-->
+  <defs id="genericDefs" />
+  <g>
+    <g>
+      <path d="M82.6875 393.75 L82.6875 328.5 L17.4375 328.5 L17.4375 140.625 L205.3125 140.625 L205.3125 205.875 L270.5625 205.875 L270.5625 393.75 L82.6875 393.75 ZM117.5625 379.125 L235.6875 379.125 L235.6875 358.875 L255.9375 358.875 L255.9375 240.75 L243.5625 246.9375 L235.6875 246.9375 L235.6875 220.5 L205.3125 220.5 L205.3125 328.5 L97.3125 328.5 L97.3125 358.875 L117.5625 358.875 L117.5625 379.125 ZM52.3125 313.875 L82.6875 313.875 L82.6875 205.875 L190.6875 205.875 L190.6875 175.5 L178.3125 181.6875 L170.4375 181.6875 L170.4375 155.25 L52.3125 155.25 L52.3125 175.5 L39.9375 181.6875 L32.0625 181.6875 L32.0625 293.625 L52.3125 293.625 L52.3125 313.875 ZM97.3125 313.875 L170.4375 313.875 L170.4375 293.625 L190.6875 293.625 L190.6875 220.5 L117.5625 220.5 L117.5625 240.75 L105.1875 246.9375 L97.3125 246.9375 L97.3125 313.875 Z" stroke="none" />
+    </g>
+  </g>
+</svg>
