@@ -1,0 +1,55 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46774844-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<title>Steven Alonzo Ellis</title>
+<link rel="stylesheet" type="text/css" href="self.css">
+</head>
+<link rel="icon" 
+      type="image/png" 
+      href="/favicon.png">
+<link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
+
+<body>
+<a href="index.html"><img id="logo" src="ideographic_description_character_overlaid.svg" type="image/svg+xml">
+</img></a>
+<div id="wrapdiv">
+
+<div id="links"><h2>
+	<a href="research.html">Research</a>
+	<a id="sel" href="visualization.html">Visualization</a>
+	<a href="photography.html">Photography</a>
+	<a href="profile.html">Profile</a>
+	</h2></div>
+<br>
+<h1>One-Sheeters - How it Happened</h1>
+<div id="story">
+  <p>Producing a beautiful, tangible infographic gives you two key advantages in an industry setting:</p>
+  <ol>
+    <li>You can deliver it ahead of your presentation, giving your audience time to absorb it at their own pace</li>
+    <li>A high quality graphic sticks around, both on the desk/wall of your audience, and in their minds</li>
+  </ol>
+  <p>To show what my one-sheeters look like, I adapted a format (in LaTeX - <a href="https://github.com/stevenae/srswor_viz">Github</a>) I've used at work to a fascinating blog post from RapGenius - <a href="http://news.rapgenius.com/James-somers-herokus-ugly-secret-annotated">"Heroku's Ugly Secret"</a>.</p>
+    <div class="image" style="float:right;"><img src="rapgenius.gif" width="260"></div>
+  <p>In this post, RapGenius revealed that Heroku was massively increasing RapGenius's latency by using purely random server request routing, as opposed to intelligently routing requests to servers with lighter loads. RapGenius used their own visualization in that post (right).</p>
+  <p>While the interactive vizualization is engaging for a lay audience, a static vizualization here translates better to the decision-making scenario of "which hosting platform should we use?". In the below example, I imagined a world where single-threading servers are the only option, and you must use a load balancer to assign connections which require persisted information, versus those that do not:</p>
+  <div class="image"><img src="srswor_for_blog.png" width="600"></div>
+</div>
+</div>
+</body>
+</html>
