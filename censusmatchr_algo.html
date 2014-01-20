@@ -41,13 +41,13 @@
 <div id="story">
 <p>Most comparisons you make in statistics are looking for differences. Odds are that every time you've heard something about "statistical significance", the "significant" aspect was that one group of people was <i>different</i> from another in some way.
 For a regional research project, I needed to do the opposite - find regions of the United States where people were exactly the same as my group's target region for launching our new service. To use traditional methods would have meant comparing the average, aggregate-level measurements of one geographic region to another, looking for regions that were merely <i>not</i> statistically different from one another, as below:</p>
-<div class="image"><img src="old_method.png" width="600"></div>
+<div class="image"><img src="old_method.png" width="500"></div>
 
 <p>However, I wanted to look for similarity, and I wanted to do it on an individual level, not at the aggregate level as in the above example. I found a paper describing such a method in the context of neuroscience research <a  href="http://www-stat.wharton.upenn.edu/~rosenbap/crossmatch.pdf">(Rosenbaum, 2005)</a>, and intuited that I could apply this approach to the census data I'd worked with in my think-tank days, as below:</p>
-<div class="image"><img src="new_method.png" width="600"></div>
+<div class="image"><img src="new_method.png" width="500"></div>
 
 <p>Each circle represents a Census respondent. With the lines connecting respondents, we're looking to make the closest connection possible - even if that means the connections end up being within the same geographic region. We use non-bipartite matching, as it doesn't bind you to the assumption of even connections between groups. The more connections that are within groups, as opposed to between them, the less likely it is that they're exact matches. The below image shows this matching occurring in one dimension:</p>
-<div class="image"><img src="nonbipartite_matching.png" width="600"></div>
+<div class="image"><img src="nonbipartite_matching.png" width="500"></div>
 
 The algorithm I produced (<a href="https://github.com/stevenae/CensusMatchR">Github</a>):
 <ol>
@@ -63,7 +63,7 @@ The algorithm I produced (<a href="https://github.com/stevenae/CensusMatchR">Git
 As you prepare to use this algorithm for a project, you can set a lower sampling rate to speed up algorithm completion, raising it when you want your final results.</p>
 <p>I've also provided code (<a href="https://github.com/stevenae/CensusMatchR/blob/master/ama_art_map.R">Github</a>) to easily visualize the results of CensusMatchR's output, as below (dark dots are exact matches to Chicago):
 </p>
-<div class="image"><img src="ama_art_map.png" width="600"></div>
+<div class="image"><img src="ama_art_map.png" width="500"></div>
 </div>
 </body>
 </html>
