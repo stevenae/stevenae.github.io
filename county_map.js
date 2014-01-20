@@ -95,14 +95,14 @@ function ready(error, us) {
       .group(populations)
     .x(d3.scale.linear()
       .domain([-.34, .47])
-      .range([0, 500])),
+      .range([0, 550])),
 
     barChart(true)
       .dimension(per_cap)
       .group(per_caps)
     .x(d3.scale.linear()
       .domain([-.34, .47])
-      .range([0, 500]))
+      .range([0, 550]))
 
   ];
 
