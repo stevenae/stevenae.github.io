@@ -49,7 +49,7 @@ li {
 }
 
 #wrapdiv {
-  width: 60em;
+    width: 60em;
     margin-left: auto;
     margin-right: auto;
 }
@@ -60,7 +60,7 @@ li {
 }
 
 #links a {
-    width: 10em;
+    width: 11.25em;
     float: left;
     text-align: center;
 }
