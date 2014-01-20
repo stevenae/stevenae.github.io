@@ -26,16 +26,6 @@ var svg = d3.select("#map").append("svg")
     .attr("viewBox", "0 0 1600 600")
     .attr("preserveAspectRatio", "true");
 
-tip = d3.tip()
-  .attr('class', 'd3-tip')
-  .offset([-10, 0])
-  .direction('n')
-  .html(function(d) {
-    return nameById.get(d.id) + "<br/>Income change: " + (rateById.get(d.id)*100).toFixed(2) + "%" +
-    "<br/>Population change: " + (popById.get(d.id)*100).toFixed(2) + "%" 
- });
-    
-svg.call(tip);
 
 var legend = d3.select("#map-legend").
   append("svg:svg").
@@ -84,10 +74,8 @@ function ready(error, us) {
     .enter().append("path")
       .attr("class", function(d) { return quantize(rateById.get(d.id)); })
       .attr("id", function(d) { return d.id; })
-      .attr("d", path)
-      .on('mouseover',tip.show)
-      .on('mouseout', tip.hide);
-
+      .attr("d", path);
+      
   var charts = [
       
     barChart(true)
