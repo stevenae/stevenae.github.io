@@ -1,0 +1,72 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-46774844-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<title>Steven Ellis</title>
+<link rel="stylesheet" type="text/css" href="self.css">
+</head>
+<link rel="icon" 
+      type="image/png" 
+      href="/favicon.png">
+<link rel="icon" 
+      type="image/png" 
+      href="favicon.png">
+
+<body>
+<a href="index.html"><img id="logo" src="ideographic_description_character_overlaid.svg" type="image/svg+xml">
+</img></a>
+<div id="wrapdiv">
+
+<div id="links"><h2>
+	<a id="sel" href="research.html">Research</a>
+	<a href="visualization.html">Visualization</a>
+	<a href="photography.html">Photography</a>
+	<a href="index.html">Profile</a>
+	</h2></div>
+<br>
+
+<div id="story">
+<h1>Does Community Acupuncture Ameliorate Chronic Illness</h1>
+<h2>Summary</h2>
+
+<p>Community acupuncture is a low-cost approach to providing ongoing medical care. Although motivations vary, community acupuncture is often sought by, and recommended for, those experiencing chronic conditions or syndromes which are undiagnosable or untreatable by Western clinicians. The largest organization of community acupuncture clinics, the People's Organization of Community Acupuncture (POCA), began with a single clinic in Oregon in 2002, and has since grown to 88 clinics across the country.</p>
+
+<p>We attempted to infer a population-level impact of the presence of community acupuncture clinics. We chose the CDC's BRFSS dataset for its geographic component (county-level data), its longitudinal nature (annually conducted since 1984), and the fact that its data is available at the individual (weighted) level.</p>
+
+<p>The goal of this project was as a proof of concept in translating techniques developed in non-health industries to a public health context. This goal was achieved, as we successfully assessed the null and alternative hypotheses and developed a flexible codebase in doing so.</p>
+
+<h2>Outcome</h2>
+
+<p>We chose as our outcome the question, "Are you limited in any way in any activities because of physical, mental, or emotional problems?".</p>
+
+<h2>Analytical Method</h2>
+
+<p>We take residency in a county which has a POCA clinic (POCA-present) as our treatment variable. For each POCA-present county, we find the POCA-absent county which had the most similar relevant demographics in the previous year. The relevancy of a demographic variable is determined by running an XGBoost model which predicts our outcome across all counties' prior-year data.</p>
+
+<p>Having found similar counties based on year-prior data, we now run a high-dimensional matching algorithm to infer our treatment effect. The matching algorithm selects synthetic controls for each treated observation using the relevant demographic variables referenced above, each weighted by their degree of relevance to the outcome.</p>
+
+<h2>Results</h2>
+
+<p>We established our bar for statistical significance by randomly labeling counties as POCA-present and running our analytical pipeline (sometimes refered to as an "A/A test"). We ran this assessment several times but did not properly bootstrap it, this is a clear next step. Through this we established a 95% confidence interval of (-162.8 , 91.1) of the ratio between point estimate and standard error of the matching algorithm.</p>
+  <a href="modeling.png"><div class="image" style="text-align:center;"><img src="acu_brfss_aa.png" width="500"></div></a>
+<p>We then correctly labeled POCA-present counties and re-ran our analytical pipeline. The resulting point estimates and standard errors are overlayed on the A/A test data below:</p>
+  <a href="modeling.png"><div class="image" style="text-align:center;"><img src="acu_brfss_poca.png" width="500"></div></a>
+<p>This being a proof-of-concept, we did not expect significant results, and were not surprised. Our experience in industry suggests that refinement of data munging and algorithmic tuning will greatly reduce our estimate variance.</p>
+<p>Check out the code <a href="https://github.com/stevenae/brfss">here</a></p>
+</div>
+</div>
+</body>
+</html>
