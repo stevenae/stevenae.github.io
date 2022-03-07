@@ -1,0 +1,26 @@
+Used this approach with both matching outcomes (generation of synthetic control, either for post-hoc inference or prospective experimental group assignment) and neighbor outcomes (either/both of generation of a knn prediction, display of selected neighbors)
+
+
+Useful when:
+1) Data structures suggest applicability of tree-based learning:
+- complex non-linear interactions
+- theory-driven hierarchical structure
+
+and there exists:
+
+2) Potential benefit from match generation:
+- desire for matching (e.g., synthetic controls)
+
+3) Potential benefit from neighbor generation:
+- desire for end-user interpretability via neighbor display
+- importance of internal (or external) quality-control (including regulatory oversight)
+
+[NB: needed to modify (R package) FNN's default knn.reg function to achieve output of neighbor metadata]
+
+Process:
+
+First, generate a tree-based model
+Second, extract feature importances
+Third, normalize and scale non-outcome variables according to feature importances
+Fourth, apply your matching or knn model
+
