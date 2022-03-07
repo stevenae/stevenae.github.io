@@ -25,6 +25,40 @@ Process:
 
 First, generate a tree-based model
 - Using an approach such as classification/regression trees, random forest, or xgboost, generate a model which predicts your outcome variable based on your predictor variables.
+
+library(xgboost)
+library(data.table)
+
+dat_trva <- data.table(input)
+tr_rows <- createDataPartition(input$outcome, p = .8, 
+															 list = FALSE, 
+															 times = 1)
+va_rows <- setdiff(seq(nrow(dat_trva)),tr_rows)
+
+tr_dm <- data.matrix(dat_trva[tr_rows,])
+tr_lab <- dat_trva[tr_rows,outcome]
+tr_packaged <- xgb.DMatrix(tr_dm,
+													 label=tr_lab
+)
+
+va_dm <- data.matrix(dat_trva[va_rows,])
+va_lab <- dat_trva[va_rows,outcome]
+va_packaged <- xgb.DMatrix(va_dm,
+													 label=va_lab
+)
+
+
+tr_va_xgb_m <- xgb.train(
+	objective = "reg:squarederror", 
+	eta = .1,
+	early_stopping_rounds = 100,
+	nrounds =  1000,
+	data = tr_packaged,
+	max_depth = 10,
+	print_every_n = 50,
+	watchlist=list(train=tr_packaged,validate=va_packaged)
+)
+
 Second, extract feature importances
 - Feature importances are encoded in the model object, likely as an object attribute or function to be called.
 
@@ -34,5 +68,7 @@ imp_vars <- model_imp$Feature
 
 Third, normalize and scale non-outcome variables according to feature importances
 - 
+
+
 Fourth, apply your matching or knn model
 
