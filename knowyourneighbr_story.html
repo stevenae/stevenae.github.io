@@ -19,7 +19,10 @@ and there exists:
 - end-user interpretability via neighbor display
 - internal (or external) quality-control (including regulatory oversight)
 
-[NB: to achieve this outcome, I needed to modify the R package FNN's default knn.reg function, to achieve output of neighbor metadata]
+[NB: to achieve this outcome, I needed to modify the R package FNN's default knn.reg function, to enable access to neighbor metadata
+  attr(res, "nn.index")<- matrix(Z$nn.index, ncol=k);
+  attr(res, "nn.dist")<- matrix(Z$nn.dist, ncol=k);
+]
 
 Process:
 
@@ -67,8 +70,28 @@ imp_val <<- model_imp$Gain
 imp_vars <- model_imp$Feature
 
 Third, normalize and scale non-outcome variables according to feature importances
-- 
+-     dat_trva_scaled <- scale(data.matrix(dat_trva))
+    dat_trva_scaled[is.na(dat_trva_scaled)] <- 0
+    dat_trva_scaled <- dat_trva_scaled[seq(nrow(dat_trva)),]
 
+    tr_x <- dat_trva_scaled[tr_rows,-excl_cols]
+    va_x <- matrix(dat_trva_scaled[va_rows,-excl_cols],nrow=sum(va_rows))
+    tr_va_x <- dat_trva_scaled[,-excl_cols]
+    oos_x <- matrix(matrix(dat_oos_scaled,nrow=ifelse(is.null(nrow(dat_oos_scaled)),1,nrow(dat_oos_scaled)))[,-excl_cols],nrow=ifelse(is.null(nrow(dat_oos_scaled)),1,nrow(dat_oos_scaled)))
+
+    # cbind(colnames(tr_x)[match(xgb_m_imp$Feature,colnames(tr_x))],xgb_m_imp$Feature) # match function check
+    to_diag <- diag(apply(xgb_m_imp[,c(3,4)],1,max))
+    col_matchup <- match(xgb_m_imp$Feature,colnames(tr_x))
+    tr_x <- tr_x[,col_matchup] %*% to_diag
+    va_x <- va_x[,col_matchup] %*% to_diag
+    oos_x <- oos_x[,col_matchup] %*% to_diag
+    tr_va_x <- tr_va_x[,col_matchup] %*% to_diag
+
+      kr <- knn.reg(train = tr_x,
+                    test = va_x,
+                    y = dat_trva[tr_rows,price_col],
+                    k = k)
+      kr_resid_centered <- kr$pred/dat_trva[va_rows,price_col]-1
 
 Fourth, apply your matching or knn model
 
