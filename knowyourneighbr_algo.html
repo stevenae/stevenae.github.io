@@ -41,7 +41,7 @@
 <div id="story">
 <h1>KnowYourNeighbr</h1>
 
-<p>KnowYourNeighbr is an ensemble modeling approach combining either multiple supervised models or supervised and semi/unsupervised learning. In most applications, I have used information from an initial XGBoost step to improve a second matching or KNN step. I have also combined the results of these two steps, as in a form of model stacking. The below will describe the non-stacking approach -- a stacking approach would simply go one step further and combine the results of the two models.</p>
+<p>KnowYourNeighbr is an ensemble modeling approach combining a blackbox model and a whitebox model. In most applications, I have used information from an initial XGBoost step to improve a second multivariate matching or KNN step. I have also combined the results of these two steps, as in a form of model stacking. The below will describe the non-stacking approach -- a stacking approach would simply go one step further and combine the results of the two models.</p>
 
 <p>I have used this approach with both matching outcomes (generation of synthetic control, either for post-hoc inference or prospective experimental group assignment) and neighbor outcomes (either/both of generation of a knn prediction, display of selected neighbors).  A matching approach underlies the (linked) <a href="acu_brfss.html">"Does Community Acupuncture Ameliorate Chronic Illness"</a> post.</p>
 
