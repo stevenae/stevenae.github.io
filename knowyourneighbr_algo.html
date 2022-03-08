@@ -42,7 +42,7 @@
 <h1>KnowYourNeighbr</h1>
 
 <p>KnowYourNeighbr is an ensemble modeling approach combining a blackbox model and a whitebox model. This approach allows for high accuracy, often the domain of blackbox models, to be augmented with interpretability, generally the domain of whitebox models. In most applications, I have used information from an initial XGBoost step to improve a second multivariate matching or KNN step. I have also combined the results of these two steps, as in a form of model stacking. The below will describe the non-stacking approach -- a stacking approach would simply go one step further and combine the results of the two models.</p>
-
+<a href="modeling.png"><div class="image" style="text-align:center;"><img src="knowyourneighbr_fig_1.png" width="500"></div></a>
 <p>I have used this approach with both matching outcomes (generation of synthetic control, either for post-hoc inference or prospective experimental group assignment) and neighbor outcomes (either/both of generation of a knn prediction, display of selected neighbors).  A matching approach underlies the (linked) <a href="acu_brfss.html">"Does Community Acupuncture Ameliorate Chronic Illness"</a> post.</p>
 
 <p>The utility of such an approach is in creating output in the form of raw data -- rows of your original inputs -- which are optimally collated with regards to the importance of each column (or predictor variable) in predicting your outcome variable.</p>
@@ -63,40 +63,26 @@
 <ol><li>end-user interpretability via neighbor display</li>
 <li>internal (or external) quality-control (including regulatory oversight)</li>
 </ol>
-<p>NB: to achieve this outcome, I needed to modify the R package FNN's default knn.reg function, to enable access to neighbor metadata</p>
-<code>
-  attr(res, "nn.index")<- matrix(Z$nn.index, ncol=k);
-  attr(res, "nn.dist")<- matrix(Z$nn.dist, ncol=k);
-</code>
 <h2>Process:</h2>
 
-<p>First, generate a tree-based model
-</p>
+<p>First, generate a tree-based model:</p>
 
-<ol>
-	<li>Using an approach such as classification/regression trees, random forest, or xgboost, generate a model which predicts your outcome variable based on your predictor variables.</li>
-</ol>
+<p>Using an approach such as classification/regression trees, random forest, or xgboost, generate a model which predicts your outcome variable based on your predictor variables.</p>
 <code>library(xgboost)
 library(data.table)
 
 dat_trva <- data.table(input)
-tr_rows <- createDataPartition(input$outcome, p = .8, 
-															 list = FALSE, 
-															 times = 1)
+tr_rows <- createDataPartition(input$outcome,
+	p = .8, list = FALSE, times = 1)
 va_rows <- setdiff(seq(nrow(dat_trva)),tr_rows)
 
 tr_dm <- data.matrix(dat_trva[tr_rows,])
 tr_lab <- dat_trva[tr_rows,outcome]
-tr_packaged <- xgb.DMatrix(tr_dm,
-													 label=tr_lab
-)
+tr_packaged <- xgb.DMatrix(tr_dm,label=tr_lab)
 
 va_dm <- data.matrix(dat_trva[va_rows,])
 va_lab <- dat_trva[va_rows,outcome]
-va_packaged <- xgb.DMatrix(va_dm,
-													 label=va_lab
-)
-
+va_packaged <- xgb.DMatrix(va_dm,label=va_lab)
 
 tr_va_xgb_m <- xgb.train(
 	objective = "reg:squarederror", 
@@ -106,37 +92,42 @@ tr_va_xgb_m <- xgb.train(
 	data = tr_packaged,
 	max_depth = 10,
 	print_every_n = 50,
-	watchlist=list(train=tr_packaged,validate=va_packaged)
+	watchlist=list(train=tr_packaged,
+		validate=va_packaged)
 )
 </code>
-<p>Second, extract feature importances</p>
-<ol><li>Feature importances are encoded in the model object, likely as an object attribute or function to be called.</li></ol>
-
+<p>Second, extract feature importances:</p>
+<p>Feature importances are encoded in the model object, likely as an object attribute or function to be called.</p>
 <code>(model_imp <- xgb.importance(model=tr_va_xgb_m))
 imp_val <<- model_imp$Gain
 imp_vars <- model_imp$Feature
 </code>
-<p>Third, normalize and scale non-outcome variables according to feature importances
-</p><code>    dat_trva_scaled <- scale(data.matrix(dat_trva))
-    dat_trva_scaled[is.na(dat_trva_scaled)] <- 0
-    dat_trva_scaled <- dat_trva_scaled[seq(nrow(dat_trva)),]
+<p>Third, normalize and scale non-outcome variables according to feature importances:</p>
+<code>dat_trva_scaled <- scale(data.matrix(dat_trva))
+dat_trva_scaled[is.na(dat_trva_scaled)] <- 0
+dat_trva_scaled <- dat_trva_scaled[
+	seq(nrow(dat_trva)),]
 
-    tr_x <- dat_trva_scaled[tr_rows,]
-    va_x <- matrix(dat_trva_scaled[va_rows,],nrow=sum(va_rows))
-    tr_va_x <- dat_trva_scaled
-    oos_x <- matrix(matrix(dat_oos_scaled,nrow=ifelse(is.null(nrow(dat_oos_scaled)),1,nrow(dat_oos_scaled))),nrow=ifelse(is.null(nrow(dat_oos_scaled)),1,nrow(dat_oos_scaled)))
+tr_x <- dat_trva_scaled[tr_rows,]
+va_x <- matrix(dat_trva_scaled[va_rows,],
+	nrow=sum(va_rows))
+tr_va_x <- dat_trva_scaled
 
-    to_diag <- diag(apply(xgb_m_imp[,c(3,4)],1,max))
-    col_matchup <- match(xgb_m_imp$Feature,colnames(tr_x))
-    tr_x <- tr_x[,col_matchup] %*% to_diag
-    va_x <- va_x[,col_matchup] %*% to_diag
-    tr_va_x <- tr_va_x[,col_matchup] %*% to_diag
+to_diag <- diag(apply(xgb_m_imp[,c(3,4)],1,max))
+col_matchup <- match(xgb_m_imp$Feature,
+	colnames(tr_x))
+tr_x <- tr_x[,col_matchup] %*% to_diag
+va_x <- va_x[,col_matchup] %*% to_diag
+tr_va_x <- tr_va_x[,col_matchup] %*% to_diag
 </code>
-<p>Fourth, apply your matching or knn model
-</p>
-<code>      kr <- knn.reg(train = tr_x,
-                    test = va_x,
-                    y = dat_trva[tr_rows,price_col],
-                    k = k)
-      kr_resid_centered <- kr$pred/dat_trva[va_rows,price_col]-1
+<p>Fourth, apply your matching or knn model:</p>
+<p>NB: to achieve this outcome, I needed to modify the R package FNN's default knn.reg function, to enable access to neighbor metadata</p>
+<code>attr(res, "nn.index")<- matrix(Z$nn.index, ncol=k);
+attr(res, "nn.dist")<- matrix(Z$nn.dist, ncol=k);
+kr <- knn.reg(train = tr_x,
+    test = va_x,
+    y = dat_trva[tr_rows,price_col],
+    k = k)
+kr_resid_centered <- kr$pred/dat_trva[va_rows,
+	price_col]-1
 </code>
