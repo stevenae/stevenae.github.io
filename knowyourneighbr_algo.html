@@ -100,7 +100,7 @@ tr_va_xgb_m <- xgb.train(
 <p>Second, extract feature importances:</p>
 <p>Feature importances are encoded in the model object, likely as an object attribute or function to be called.</p>
 <code>(model_imp <- xgb.importance(model=tr_va_xgb_m))
-imp_val <<- model_imp$Gain
+imp_val <- model_imp$Gain
 imp_vars <- model_imp$Feature
 </code>
 <p>Third, normalize and scale non-outcome variables according to feature importances:</p>
