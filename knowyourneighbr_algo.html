@@ -70,6 +70,7 @@
 <p>Using an approach such as classification/regression trees, random forest, or xgboost, generate a model which predicts your outcome variable based on your predictor variables.</p>
 <code>library(xgboost)
 library(data.table)
+library(caret)
 
 dat_trva <- data.table(input)
 tr_rows <- createDataPartition(input$outcome,
