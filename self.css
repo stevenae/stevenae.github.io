@@ -114,7 +114,7 @@ li {
 }
 
 #content {
-    overflow: hidden;
+    display: block;
 }
 
 img {
