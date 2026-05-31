@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Harry Potter and the Hypervolume | Steve Ellis</title>
+  <link rel="stylesheet" type="text/css" href="self.css?v=4">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+<div id="wrapdiv">
+  <article class="post">
+    <a class="post-back" href="index.html">← Steve Ellis</a>
+    <h2>Harry Potter and the Hypervolume</h2>
+    <p class="post-subtitle">My Story of Getting AI to Do What I Want</p>
+    <p class="date">May 31, 2026</p>
+
+    <h3>A Helpful Metaphor for What a Successful AI "Conversation" Feels Like</h3>
+    <p>If you read guides on AI, they'll say "<a href="https://support.claude.com/en/articles/8114491-get-started-with-claude">treat it like a conversation</a>," but that's obviously weird because AI is not a person, so you are, in fact, talking with yourself.</p>
+    <p>And not to go into <a href="https://www.404media.co/ai-psychosis-help-gemini-chatgpt-claude-chatbot-delusions/">AI psychosis</a>, but the only way to stay sane while having a conversation with yourself is to use imagination!</p>
+
+    <h3>The House Elf</h3>
+    <p>I was re-watching Harry Potter and saw the scene where Harry is hunting for a horcrux — a pendant — and doesn't know where to find it. He ends up in the house of his godfather, Sirius Black, and encounters the Black family house elf. House elves in Harry Potter have extraordinary power, but they hedge — they hem and haw unless and until pinned down.</p>
+    <p>Which, if you've gotten past one-shotting and gotten over your frustration with prompt engineering, probably resonates with how you use AI. I'm not telling you anything different in that case; just giving you a metaphor in which to frame it.</p>
+
+    <h3>The Hypervolume (the Pareto Frontier)</h3>
+    <p>A Pareto frontier is just a fancy name for a trade-off — or multiple trade-offs — where your goals are met as best they can be. If you're trying to budget, it's where you're spending most of your money on housing and food — necessities — instead of clothing or entertainment. It does imply constraints (if you're wealthy, you probably do spend most of your money on clothing and entertainment), and that's the point.</p>
+    <p>A hypervolume is just the same frontier in more than two dimensions; instead of trading off housing and food, add in healthcare, add in education. Now it sounds like a real problem, and you might find AI helpful in solving it!</p>
+
+    <h3>Actioning</h3>
+    <p>If you're still reading, you're probably looking for an example. Well, let's try the one we just talked about.</p>
+
+    <h3>Claude Prompts</h3>
+    <p>The trick isn't writing one perfect prompt — it's running several, each one reacting to what came back. Same idea here.</p>
+    <p>Start vague, and watch it hem and haw:</p>
+    <blockquote>Help me budget my money across housing, food, healthcare, and education.</blockquote>
+    <p>You'll get the 50/30/20 rule and a request for more information. It hedges, because you haven't pinned it down.</p>
+    <p>So pin it down — give it your numbers and your hard constraints:</p>
+    <blockquote>I take home $6,500/month. Rent is fixed at $2,200, and I won't go below $600 on food or $400 on healthcare. I want to put my kid through state college (~$1,500/month) and still save at least $500/month. Lay out a budget that fits all of these.</blockquote>
+    <p>Now it gives you a real budget. But you don't accept it — you push on the part you don't like:</p>
+    <blockquote>The $500 savings is too thin. What's the most I can save if I let the college number float down to $1,200?</blockquote>
+    <p>It re-runs the trade-off. You keep going, one move at a time:</p>
+    <blockquote>Okay. Now show me that as a frontier — savings vs. college spending — so I can see the whole range, not just this one point. Flag anything that dips below a necessity.</blockquote>
+    <p>And once you can see the shape of it, you turn it into something you can keep:</p>
+    <blockquote>Build that into a small interactive table I can drag the numbers around in.</blockquote>
+    <p>No single prompt did the work. Each one took the last answer and pushed it somewhere — the same way you and I would hash this out across a table. That's the house elf, pinned down a little more each turn.</p>
+
+    <h3>How This Post Happened</h3>
+    <p>This post came together the same way. I started from a dictated draft and worked it over a few passes — reining in edits that went too far, then adjusting the example until it made the point I actually wanted to make. No single version was right; each one just got a little closer.</p>
+  </article>
+</div>
+</body>
+</html>
