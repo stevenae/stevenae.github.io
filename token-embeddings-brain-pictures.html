@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brain Pictures and the Shape of Tokens | Steve Ellis</title>
+  <link rel="stylesheet" type="text/css" href="self.css?v=4">
+  <link rel="icon" type="image/png" href="favicon.png">
+</head>
+
+<body>
+<div id="wrapdiv">
+  <article class="post">
+    <a class="post-back" href="index.html">← Steve Ellis</a>
+    <h2>Brain Pictures and the Shape of Tokens</h2>
+    <p class="date">June 14, 2026</p>
+
+    <p>Pictures of brains make things seem believable.<a id="ref1" href="#note1"><sup>1</sup></a> This was a compounding factor in the rise of fMRI/functional neuroscience, and possibly led us to overlook the p-hacking until it was too late (and revealed by the all-time-great Dead Fish Paper<a id="ref2" href="#note2"><sup>2</sup></a>).</p>
+
+    <p>Well, with that cautionary context, check out these <a href="https://arxiv.org/html/2410.08993v1">cool visualizations</a> of LLMs looking suspiciously brain-like. They're actually from a paper examining the shape of the distribution of tokens, which is sort of a representation of how similar an LLM thinks words are to one another.</p>
+
+    <figure>
+      <img src="token-embeddings-brain.png" alt="t-SNE projection of token embeddings colored by local dimension, with numerals highlighted" style="max-width: 360px; width: 100%;">
+      <figcaption>Token embeddings projected to 2D and colored by local dimension; numerals (the dense, isolated cluster) sit apart from the rest of language. From Robinson, Dey &amp; Sweet (2024).</figcaption>
+    </figure>
+
+    <p>Something that's really interesting in this paper is that it highlights the distributions of numerals, and shows how their proximity to, or distance from, letters and parts of words has consequences for LLMs' ability to reason beyond the qualitative.</p>
+
+    <p>The motivation for the paper is even deeper. They question — and effectively disprove — the notion that the token embedding space is a shape at all. They ask whether the token embeddings are part of a "manifold," which is to say, anything from a perfectly flat plane to a perfectly round sphere (and any distortions in between), where you can, from any given point, basically "keep going" in any direction and expect the shape to continue out before you.</p>
+
+    <p>The authors self-referentially note that it's wild to be the first ones investigating a pretty obvious question.</p>
+
+    <p>That said, this paper is from 2024, and investigates models of that era — Mistral 7B, GPT-2, and Llemma 7B. They've written a follow-up since then, which I'm excited to get through!</p>
+
+    <hr>
+    <ol class="notes">
+      <li id="note1">McCabe, D. P., &amp; Castel, A. D. (2008). "Seeing is believing: The effect of brain images on judgments of scientific reasoning." <em>Cognition</em>, 107(1), 343–352. <a href="https://pubmed.ncbi.nlm.nih.gov/17803985/">[link]</a> <a href="#ref1">↩</a></li>
+      <li id="note2">Bennett, C. M., Baird, A. A., Miller, M. B., &amp; Wolford, G. L. "Neural correlates of interspecies perspective taking in the post-mortem Atlantic Salmon" — the "Dead Fish Paper." <a href="https://prefrontal.org/blog/2009/06/human-brain-mapping-2009-presentations/">[link]</a> <a href="#ref2">↩</a></li>
+    </ol>
+  </article>
+</div>
+</body>
+</html>
